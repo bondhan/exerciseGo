@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // "github.com/paddie/gokmp"
 
@@ -72,32 +75,43 @@ func kmpPattSearch(mainString string, pattern string) []int {
 
 */
 
+func getLengthFromPattern(s string, p string) int {
+	// if pattern is empty string we return length of whole main string
+	if p == "" {
+		return len(s)
+	}
+
+	for i := 0; i < len(p); i++ {
+		if strings.HasPrefix(s, p[:len(p)-i]) {
+			// fmt.Println("p[:len(p)-i]=", p[:len(p)-i], "len=", len(p[:len(p)-i]))
+			return len(p[:len(p)-i])
+		}
+	}
+
+	return 0
+}
+
 func main() {
-	// str := "ababaa"
-	// total := 0
-	// for i := 0; i < len(str); i++ {
-	// 	s := str[i:]
-	// 	counter := 0
+	str := "ababaa"
 
-	// 	for j := 0; j < len(s); j++ {
-	// 		if s[j] == str[j] {
-	// 			counter++
-	// 		} else {
-	// 			break
-	// 		}
-	// 	}
+	total := 0
+	for i := 0; i < len(str); i++ {
+		s := str[i:]
 
-	// 	total = total + counter
-	// }
+		counter := getLengthFromPattern(str, s)
 
-	// fmt.Println(total)
+		// fmt.Printf("str=%s s=%s k=%v\n", str, s, counter)
+		total = total + counter
+	}
 
-	str := "AAAABAAAAABBBAAAAB"
-	patt := "AAAB"
-	ret := kmpPattSearch(str, patt)
+	fmt.Println(total)
 
-	// for a := range ret {
-	fmt.Println(ret)
-	// }
+	// str := "AAAABAAAAABBBAAAAB"
+	// patt := ""
+	// ret := kmpPattSearch(str, patt)
+
+	// // for a := range ret {
+	// fmt.Println(ret)
+	// // }
 
 }
