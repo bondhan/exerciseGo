@@ -100,7 +100,7 @@ func main() {
 
 		counter := getLengthFromPattern(str, s)
 
-		// fmt.Printf("str=%s s=%s k=%v\n", str, s, counter)
+		fmt.Printf("str=%s p=%s len=%v\n", str, s, counter)
 		total = total + counter
 	}
 
