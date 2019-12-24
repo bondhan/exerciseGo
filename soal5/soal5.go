@@ -9,61 +9,61 @@ import (
 
 //adapted from https://www.tutorialspoint.com/Knuth-Morris-Pratt-Algorithm
 
-func findPrefix(pattern string) []int {
-	length := 0
-	prefArray := make([]int, len(pattern))
+// func findPrefix(pattern string) []int {
+// 	length := 0
+// 	prefArray := make([]int, len(pattern))
 
-	for i := 1; i < len(pattern); i++ {
-		if pattern[i] == pattern[length] {
-			length++
-			prefArray[i] = length
-			// prefArray = append(prefArray, length)
-		} else {
-			if length != 0 {
-				length = prefArray[length-1]
-				i--
-			} else {
-				prefArray[i] = 0
-			}
-		}
-	}
+// 	for i := 1; i < len(pattern); i++ {
+// 		if pattern[i] == pattern[length] {
+// 			length++
+// 			prefArray[i] = length
+// 			// prefArray = append(prefArray, length)
+// 		} else {
+// 			if length != 0 {
+// 				length = prefArray[length-1]
+// 				i--
+// 			} else {
+// 				prefArray[i] = 0
+// 			}
+// 		}
+// 	}
 
-	return prefArray
-}
+// 	return prefArray
+// }
 
-func kmpPattSearch(mainString string, pattern string) []int {
-	n, m, i, j := 0, 0, 0, 0
-	n = len(mainString)
-	m = len(pattern)
-	// locArray := make([]int, (len(mainString) / len(pattern)))
-	locArray := []int{}
-	loc := 0
+// func kmpPattSearch(mainString string, pattern string) []int {
+// 	n, m, i, j := 0, 0, 0, 0
+// 	n = len(mainString)
+// 	m = len(pattern)
+// 	// locArray := make([]int, (len(mainString) / len(pattern)))
+// 	locArray := []int{}
+// 	loc := 0
 
-	prefixArray := findPrefix(pattern)
+// 	prefixArray := findPrefix(pattern)
 
-	for i < n {
-		if mainString[i] == pattern[j] {
-			i++
-			j++
-		}
+// 	for i < n {
+// 		if mainString[i] == pattern[j] {
+// 			i++
+// 			j++
+// 		}
 
-		if j == m {
-			// locArray[loc] = i - j
-			locArray = append(locArray, i-j)
-			loc++
-			j = prefixArray[j-1]
-		} else if i < n && pattern[j] != mainString[i] {
-			if j != 0 {
-				j = prefixArray[j-1]
-			} else {
-				i++
-			}
-		}
-	}
+// 		if j == m {
+// 			// locArray[loc] = i - j
+// 			locArray = append(locArray, i-j)
+// 			loc++
+// 			j = prefixArray[j-1]
+// 		} else if i < n && pattern[j] != mainString[i] {
+// 			if j != 0 {
+// 				j = prefixArray[j-1]
+// 			} else {
+// 				i++
+// 			}
+// 		}
+// 	}
 
-	return locArray
+// 	return locArray
 
-}
+// }
 
 /*
 1. "" in ababaa = 6
@@ -91,20 +91,28 @@ func getLengthFromPattern(s string, p string) int {
 	return 0
 }
 
-func main() {
-	str := "ababaa"
-
+func GetTotalCharSuffix(str string) int {
 	total := 0
 	for i := 0; i < len(str); i++ {
 		s := str[i:]
 
 		counter := getLengthFromPattern(str, s)
 
-		fmt.Printf("str=%s p=%s len=%v\n", str, s, counter)
+		// fmt.Printf("str=%s p=%s len=%v\n", str, s, counter)
 		total = total + counter
 	}
 
-	fmt.Println(total)
+	return total
+
+}
+
+func main() {
+	// str := "ababaa"
+	array := []string{"ababaa", "euyruiwyeriuoyweqioryeufkjdshgsdfbhmbvmnzbvjsgfgkwygrkjwhegfj", "aaabbbcccddd", "wweeeerrrtaaawweerr"}
+
+	for _, s := range array {
+		fmt.Println(GetTotalCharSuffix(s))
+	}
 
 	// str := "AAAABAAAAABBBAAAAB"
 	// patt := ""
