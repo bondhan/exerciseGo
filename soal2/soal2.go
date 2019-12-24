@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func quickSort(arr []int) []int {
 	if len(arr) < 2 {
@@ -54,25 +56,25 @@ func quickSortNumber(arr []Number) []Number {
 	return arr
 }
 
-func main() {
-	array := []int{1, 2, 4, 2, 2, 3, 6, 6, 4, 3, 7}
+func SortQuantityAscending(array []int) []int {
 
 	sortedArr := make([]int, len(array))
 
 	copy(sortedArr, array)
 	sortedArr = quickSort(sortedArr)
 
-	fmt.Println(array)
-	fmt.Println(sortedArr)
+	// fmt.Println(array)
+	// fmt.Println(sortedArr)
 
 	sortedArray := make(map[int]int)
 
 	for a, b := range sortedArr {
-		fmt.Println("a", a, "b", b)
+		// fmt.Println("a", a, "b", b)
+		_ = a
 		sortedArray[b]++
 	}
 
-	fmt.Println(sortedArray)
+	// fmt.Println(sortedArray)
 
 	tmpArray := []Number{}
 
@@ -81,11 +83,11 @@ func main() {
 		tmpArray = append(tmpArray, n)
 	}
 
-	fmt.Println(tmpArray)
+	// fmt.Println(tmpArray)
 
 	quickSortNumber(tmpArray)
 
-	fmt.Println(tmpArray)
+	// fmt.Println(tmpArray)
 
 	for a := range tmpArray {
 		for c := range tmpArray {
@@ -97,9 +99,20 @@ func main() {
 		}
 	}
 
+	result := []int{}
 	for i := 0; i < len(tmpArray); i++ {
 		for j := 0; j < tmpArray[i].counter; j++ {
-			fmt.Println(tmpArray[i].number)
+			// fmt.Println(tmpArray[i].number)
+			result = append(result, tmpArray[i].number)
 		}
 	}
+
+	return result
+}
+
+func main() {
+	array := []int{1, 2, 4, 2, 2, 3, 6, 6, 4, 3, 7}
+
+	fmt.Println(SortQuantityAscending(array))
+
 }
