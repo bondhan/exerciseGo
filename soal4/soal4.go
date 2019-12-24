@@ -24,6 +24,27 @@ func New(arr []int) *Node {
 	return n
 }
 
+func NewBrokenTree(arr []int) *Node {
+	if len(arr) < 1 {
+		return &Node{}
+	}
+
+	head := &Node{nil, arr[0], nil}
+	n := head
+
+	for i := 1; i < len(arr); i += 2 {
+		n1 := &Node{nil, arr[i], nil}
+		n2 := &Node{nil, arr[i+1], nil}
+
+		n.left = n1
+		n.right = n2
+
+		n = n1
+	}
+
+	return head
+}
+
 func (n *Node) insert(val int) {
 	if val <= n.data {
 		if n.left == nil {
@@ -82,7 +103,7 @@ func main() {
 	arrInt := []int{3, 2, 5, 1, 4}
 	fmt.Println("arrInt=", arrInt)
 
-	bst := New(arrInt)
+	bst := NewBrokenTree(arrInt)
 
 	fmt.Println("printnode=", bst.printnode())
 
