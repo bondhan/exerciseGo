@@ -50,8 +50,8 @@ func Contains(mainStr string,pattern string) bool{
 
 func main() {
 
-	str:="abcde"
-	pattern:="abcd"
+	str:="abbcde"
+	pattern:="bc"
 
 
 	fmt.Println(Contains(str, pattern))
