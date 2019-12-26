@@ -43,3 +43,12 @@ func TestContainsNotFound(t *testing.T){
 		t.Errorf("error")
 	}
 }
+
+func TestContainsinSymbol(t *testing.T){
+	str1:="aoeur bc perued f"
+	str2:="bc"
+
+	if Contains(str1,str2) == false {
+		t.Errorf("error")
+	}
+}

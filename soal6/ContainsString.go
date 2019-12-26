@@ -12,25 +12,15 @@ func Contains(mainStr string,pattern string) bool{
 		return false
 	}
 
-	str1:=strings.Split(mainStr, "")
-	str2:=strings.Split(pattern, "")
-
-	var longStr,shortStr []string
-
-	if len(str1) > len(str2) {
-		longStr = str1
-		shortStr = str2
-	} else {
-		longStr = str2
-		shortStr = str2
-	}
+	str:=strings.Split(mainStr, "")
+	patt:=strings.Split(pattern, "")
 
 	found:=false
-	for i:=0;i<len(longStr);i++{
+	for i:=0;i<len(str);i++{
 		found=false
 		index:=i
-		for j:=0;j<len(shortStr);j++{
-			if longStr[index] == shortStr[j] {
+		for j:=0;j<len(patt);j++{
+			if str[index] == patt[j] {
 				// fmt.Println(longStr[index], shortStr[j])
 				found=true
 				index++								
