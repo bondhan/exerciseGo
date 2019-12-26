@@ -6,13 +6,14 @@ import (
 )
 
 
-func main() {
+func Contains(mainStr string,pattern string) bool{
 
-	string1:="abcde"
-	string2:="ab"
+	if len(pattern) > len(mainStr) {
+		return false
+	}
 
-	str1:=strings.Split(string1, "")
-	str2:=strings.Split(string2, "")
+	str1:=strings.Split(mainStr, "")
+	str2:=strings.Split(pattern, "")
 
 	var longStr,shortStr []string
 
@@ -30,7 +31,7 @@ func main() {
 		index:=i
 		for j:=0;j<len(shortStr);j++{
 			if longStr[index] == shortStr[j] {
-				fmt.Println(longStr[index], shortStr[j])
+				// fmt.Println(longStr[index], shortStr[j])
 				found=true
 				index++								
 			} else {
@@ -44,6 +45,14 @@ func main() {
 		}
 	}
 
-	fmt.Println(string1,string2)
-	fmt.Println(found)
+	return found
+}
+
+func main() {
+
+	str:="abcde"
+	pattern:="abcd"
+
+
+	fmt.Println(Contains(str, pattern))
 }
